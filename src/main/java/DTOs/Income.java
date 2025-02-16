@@ -21,6 +21,9 @@ public class Income {
         this.dateEarned = date;
     }
 
+    public int getIncomeID() {
+        return incomeID;
+    }
 
     public String getTitle() {
         return title;

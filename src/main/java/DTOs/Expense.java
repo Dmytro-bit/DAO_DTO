@@ -26,6 +26,9 @@ public class Expense {
     }
 
     //    GETTERS
+    public int getExpenseID() {
+        return expenseID;
+    }
 
     public String getTitle() {
         return title;

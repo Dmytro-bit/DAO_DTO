@@ -27,11 +27,19 @@ public class Main {
         if (objects.isEmpty())
             System.out.println("There are no objects");
         else {
+            if (objects.get(0) instanceof Expense) {
+                System.out.printf("%5s | %-20s | %-15s | %-20s | %-12s |\n", "ID", "Title", "Category", "Amount", "Date");
+                System.out.println("--------------------------------------------------------------------------------------------");
+            } else {
+                System.out.printf("%5s | %-20s | %-20s | %-12s |\n", "ID", "Title", "Amount", "Date Earned");
+                System.out.println("---------------------------------------------------------------------");
+            }
+
             for (Object object : objects) {
                 if (object instanceof Expense expense) {
-                    System.out.println("Expense: " + expense.toString());
+                    System.out.printf("%5d | %-20s | %-15s | %20.2f | %-12s |\n", expense.getExpenseID(), expense.getTitle(), expense.getCategory(), expense.getAmount(), expense.getDateIncurred());
                 } else if (object instanceof Income income) {
-                    System.out.println("Income: " + income.toString());
+                    System.out.printf("%5d | %-20s | %20.2f | %-12s |\n", income.getIncomeID(), income.getTitle(), income.getAmount(), income.getDateEarned());
                 }
             }
         }
@@ -56,6 +64,7 @@ public class Main {
     public static void mainManu(RecordDaoInterface IExpenseDao, RecordDaoInterface IIncomeDao) throws DaoException {
         Scanner scanner = new Scanner(System.in);
         while (true) {
+            System.out.println();
             System.out.println("========= Finance Management =========");
             System.out.println("1) Expenses Management");
             System.out.println("2) Incomes Management");
@@ -111,10 +120,11 @@ public class Main {
         System.out.println("========= Finance Statistics for " + months[monthNumber - 1] + " =========");
         System.out.println("Expenses in month: " + totalExpenses);
         printObjects(expenseList);
-        System.out.println("Incomes in month: " + totalIncomes);
+        System.out.println("\nIncomes in month: " + totalIncomes);
         printObjects(incomeList);
         System.out.println();
-        System.out.println("Month balance: " + (totalIncomes - totalExpenses));
+        double balance = totalIncomes - totalExpenses;
+        System.out.printf("\nMonth balance: " + (balance >= 0 ? "+" : "-") + "%.2f\n", balance);
 
     }
 
