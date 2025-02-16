@@ -8,18 +8,17 @@ public class Income {
     private double amount;
     private Date dateEarned;
 
-    public Income(String title, double amount, Date date) {
-        this.incomeID = ++incomeID;
+    public Income(int incomeID, String title, double amount, Date date) {
+        this.incomeID = incomeID;
         this.title = title;
         this.amount = amount;
         this.dateEarned = date;
     }
 
-    public Income() {
-    }
-
-    public int getIncomeID() {
-        return incomeID;
+    public Income(String title, double amount, Date date) {
+        this.title = title;
+        this.amount = amount;
+        this.dateEarned = date;
     }
 
 
@@ -39,11 +38,16 @@ public class Income {
         this.amount = amount;
     }
 
-    public Date getDateEarned() {
-        return dateEarned;
+    public java.sql.Date getDateEarned() {
+        return (java.sql.Date) dateEarned;
     }
 
     public void setDateEarned(Date dateEarned) {
         this.dateEarned = dateEarned;
+    }
+
+    @Override
+    public String toString() {
+        return "Income [incomeID=" + incomeID + ", title=" + title + ", amount=" + amount + ", dateEarned=" + dateEarned + "]";
     }
 }

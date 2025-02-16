@@ -19,20 +19,13 @@ public class Expense {
 
 
     public Expense(String title, String category, double amount, Date dateIncurred) {
-        this.expenseID = ++this.expenseID;
         this.title = title;
         this.category = category;
         this.amount = amount;
         this.dateIncurred = dateIncurred;
     }
 
-    public Expense() {
-    }
-
     //    GETTERS
-    public int getExpenseID() {
-        return expenseID;
-    }
 
     public String getTitle() {
         return title;
@@ -46,8 +39,8 @@ public class Expense {
         return amount;
     }
 
-    public Date getDateIncurred() {
-        return dateIncurred;
+    public java.sql.Date getDateIncurred() {
+        return (java.sql.Date) dateIncurred;
     }
 
 //    SETTERS
@@ -66,5 +59,10 @@ public class Expense {
 
     public void setDateIncurred(Date dateIncurred) {
         this.dateIncurred = dateIncurred;
+    }
+
+    @Override
+    public String toString() {
+        return "Expense [expenseID=" + expenseID + ", title=" + title + ", category=" + category + ", amount=" + amount + ", dateIncurred=" + dateIncurred + "]";
     }
 }
